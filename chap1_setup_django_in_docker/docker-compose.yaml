@@ -1,0 +1,22 @@
+
+version: '3.8'
+
+services:
+
+  python:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    entrypoint: ["/bin/sh", "-c"] #python manage.py runserver 0.0.0.0:8000 #bash start-project.sh
+    command: 
+    - |
+      bash start-project.sh
+      python manage.py runserver 0.0.0.0:8000
+
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app/
+
+
+# , cd hello_world/app/simple_app/, python manage.py runserver 0.0.0.0.0:8000
