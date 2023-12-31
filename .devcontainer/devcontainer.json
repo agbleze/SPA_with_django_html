@@ -1,30 +1,46 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
+// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
-	"name": "Python 3",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.10-bookworm",
+	"name": "Python 3 & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
-			"command": "echo hi!"
-		},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"moby": true,
-			"azureDnsAutoDetection": true,
-			"installDockerBuildx": true,
-			"version": "latest",
-			"dockerDashComposeVersion": "v2"
-		}
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/git-lfs:1": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {},
+		"ghcr.io/devcontainers/features/sshd:1": {},
+		"ghcr.io/iterative/features/nvtop:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/r-apt:0": {},
+		"ghcr.io/devcontainers-contrib/features/alertmanager:1": {},
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {},
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {},
+		"ghcr.io/devcontainers-contrib/features/kubescape:1": {},
+		"ghcr.io/devcontainers-contrib/features/podman-homebrew:1": {},
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
+		"ghcr.io/devcontainers-contrib/features/prometheus:1": {},
+		"ghcr.io/devcontainers-contrib/features/redis-homebrew:1": {},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {},
+		"ghcr.io/rio/features/k9s:1": {},
+		"ghcr.io/frntn/devcontainers-features/postman:1": {},
+		"ghcr.io/itsmechlark/features/postgresql:1": {},
+		"ghcr.io/itsmechlark/features/redis-server:1": {},
+		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {},
+		"ghcr.io/raucha/devcontainer-features/pytorch:1": {},
+		"ghcr.io/audacioustux/devcontainers/k9s:1": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	// This can be used to network with other containers or the host.
+	// "forwardPorts": [5000, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// "postCreateCommand": "pip install --user -r requirements.txt",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
