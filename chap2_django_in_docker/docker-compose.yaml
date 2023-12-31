@@ -6,7 +6,12 @@ services:
     build: 
       context: ./
       dockerfile: ./Dockerfile
-    entrypoint: bash ./django-launcher.sh
+    entrypoint: ["/bin/sh", "-c"]
+    command: 
+    - |
+      bash start-project.sh
+      bash django-launcher.sh
+
     volumes:
       - .:/usr/src/app/
     environment:
