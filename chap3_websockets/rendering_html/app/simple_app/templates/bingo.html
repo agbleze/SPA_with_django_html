@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>Bingo</title>
+    </head>
+
+    <body>
+        <h1>Bingo</h1>
+        <h2>Ball: <span id="ball"></span></h2>
+        <h2 id="ticket"></h2>
+
+        <script>
+            const myWebSocket = new WebSocket("ws://{{ request.get_host }}/ws/bingo/");
+            let ticket = [];
+
+            myWebsocket.addEventListener("message", (event) => {
+                const myData = JSON.parse(event.data);
+                switch (myData.action) {
+                    case "New ticket":
+                        ticket = myData.ticket;
+                        document.getElementById("ticket").textContent = "Ticket: " + ticket.join(", ");
+                        break;
+                    case "New ball":
+                        ball = myData.ball;
+                        ticket = ticket.map(item => item === ball ? "X": item);
+
+                        document.getElementById("ticket").textContent = "Ticket: " + ticket.join(", ");
+
+                        document.getElementById("ball").textContent = ball;
+
+                        if (ticket.find(number => number !== "X") === undefined) {
+                            document.getElementById("ticket").textContent = "Winner!";
+
+                        }
+                        else {
+                            document.getElementById("ticket").textContent = "Keep playing!";
+                        }
+                        break;
+                }
+            })
+        <script>
+
+    </body>
+
+</html>
